@@ -1,0 +1,56 @@
+{% extends '../base.html' %}
+
+{% load static %}
+
+{% block title %}
+    <title>{{ post.post_title }}</title>
+{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/posts_show.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <!-- Post Details -->
+            <div class="col s9">
+                <div class="section">
+                    <h2>{{ post.post_title }}</h2>
+                    <h6 class="grey-text">
+                        {{ post.date_updated.date }} By <a href="{% url 'myblog:authors_show' post.author.id %}">{{ post.author.name }}</a>
+                    </h6>
+                </div>
+                <div class="divider"></div>
+                <div class="section">
+                    <p>{{ post.post_content }}</p>
+                </div>
+            </div> <!-- /Post Details -->
+
+            <!-- About Author -->
+            <div class="col s3">
+                <div class="section">
+                    <div class="card">
+                        <div class="card-content">
+                            <span class="card-title">About Author</span>
+                            <p>{{ post.author.about }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="section left-padded">
+                    <h5>{{ post.author.name }}'s Posts</h5>
+                    <ul>
+                        {% for post in posts %}
+                            <li><a href="{% url 'myblog:posts_show' post.id %}">{{ post.post_title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="section left-padded">
+                    <h5>Contact</h5>
+                    <a href="mailto:{{ post.author.email }}">{{ post.author.email }}</a>
+                </div>
+            </div> <!-- /About Author -->
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>Base Page</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    {% block stylesheet %}
+
+    {% endblock %}
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-wrapper container">
+            <a href="{% url 'myblog:home' %}" class="brand-logo valign-wrapper"><i class="materials-icons left">cloud</i>
+            My Blog</a>
+            <ul id="nav-mobile" class="right">
+                <li><a href="{% url 'myblog:posts_index' %}" class="valign-wrapper"><i class="material-icons left">content_copy</i>Posts</a></li>
+                <li><a href="{% url 'myblog:authors_index' %}" class="valign-wrapper"><i class="material-icons left">create</i>Authors</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    {% block content %}
+
+    {% endblock %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    {% block javascript %}
+
+    {% endblock %}
+</body>
+</html>
+

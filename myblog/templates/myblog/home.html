@@ -1,0 +1,33 @@
+{% extends './base.html' %}
+
+{% load static %}
+
+{% block title %}
+	<title>My Blog Home</title>
+
+{% endblock %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="parallex-container">
+			<div class="parallex"><img src="{% static 'images/scene1.jpg' %}"></div>
+		</div>
+		<div class="section white">
+			<div class="row container">
+				<h1 class="header">My Blog</h1>
+				<p class="grey-text text-darken-3 lighten-3">
+					Welcome to my blog! Click below to check out the posts!
+				</p>
+				<a href="{% url 'myblog:posts_index' %}" class="btn-large">View Posts</a>
+			</div>
+		</div>
+		<div class="parallex-container">
+			<div class="parallex"><img src="{% static 'images/scene2.jpg' %}"></div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
+

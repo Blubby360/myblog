@@ -1,0 +1,40 @@
+{% extends '../base.html' %}
+
+{% block title %}
+    <title>{{ author.name }}</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <!-- Author Info Section -->
+        <div class="section">
+            <div class="card">
+                <div class="card-content grey lighten-3">
+                    <span class="right">Member since: {{ author.date_joined.date }}</span>
+                    <h3>{{ author.name }}</h3>
+                    <p>Email: <a href="mailto:{{ author.email }}">{{ author.email }}</a></p>
+                    <blockquote><p>{{ author.about }}</p></blockquote>
+                </div>
+            </div>
+        </div><!-- /Author Info Section -->
+
+        <!-- Author's Posts -->
+        <ul class="collection with-header">
+            <li class="collection-header blue lighten-4">
+                <h6>Posts by {{ author.name }}</h6>
+            </li>
+            {% if posts %}
+                {% for post in posts %}
+                    <a href="{% url 'myblog:posts_show' post.id %}" class="collection-item black-text">
+                        <span class="right grey-text">Last Updated: {{ post.date_updated}}</span>
+                        <h6>{{ post.post_title }}</h6>
+                        <p>{{ post.post_content | truncatewords:10 }}</p>
+                    </a>
+                {% endfor %}
+            {% else %}
+                <li class="collection-item">This author has not created any post yet.</li>
+            {% endif %}
+        </ul><!-- /Author's Posts -->
+    </div>
+{% endblock %}
+

@@ -1,0 +1,33 @@
+{% extends '../base.html' %}
+
+{% block title %}
+    <title>All Authors</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="section">
+            <ul class="collection with-header">
+                <li class="collection-header grey lighten-3">
+                    <h3>List of Authors</h3>
+                    <p>Check out below all the contributing authors on this blog!</p>
+                </li>
+                {% if authors %}
+                    {% for author in authors %}
+                        <a href="{% url 'myblog:authors_show' author.id %}" class="collection-item">
+                            <span class="right">Posts count: {{ author.post_set.all.count }}</span>
+                            <span class="valign-wrapper">
+                                <i class="material-icons small left">face</i>
+                                {{ author.name }}
+                            </span>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <li class="collection-item">
+                        There is no author for this blog yet.
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
